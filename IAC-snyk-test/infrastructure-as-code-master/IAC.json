@@ -1,0 +1,783 @@
+[
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/aws/elb.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/aws/elb.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": false,
+    "infrastructureAsCodeIssues": [
+      {
+        "id": "SNYK-CC-TF-48",
+        "title": "Load balancer is internet facing",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "Elastic Load Balancing",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-48",
+        "isGeneratedByCustomRule": false,
+        "issue": "Load balancer is internet facing",
+        "impact": "Increases attack vector reachability",
+        "resolve": "Set `internal` attribute to `true`",
+        "remediation": {
+          "cloudformation": "Set `Properties.Scheme` attribute to `internal`",
+          "terraform": "Set `internal` attribute to `true`"
+        },
+        "lineNumber": 20,
+        "iacDescription": {
+          "issue": "Load balancer is internet facing",
+          "impact": "Increases attack vector reachability",
+          "resolve": "Set `internal` attribute to `true`"
+        },
+        "publicId": "SNYK-CC-TF-48",
+        "msg": "resource.aws_elb[dummy_elb].internal",
+        "references": [
+          "https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internet-facing-load-balancers.html"
+        ],
+        "path": [
+          "resource",
+          "aws_elb[dummy_elb]",
+          "internal"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-56",
+        "title": "Security group description is missing",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-56",
+        "isGeneratedByCustomRule": false,
+        "issue": "The description field is missing in the security group",
+        "impact": "Increases the security management overhead",
+        "resolve": "Set `description` attribute to meaningful statement",
+        "lineNumber": 1,
+        "iacDescription": {
+          "issue": "The description field is missing in the security group",
+          "impact": "Increases the security management overhead",
+          "resolve": "Set `description` attribute to meaningful statement"
+        },
+        "publicId": "SNYK-CC-TF-56",
+        "msg": "resource.aws_security_group[elb].description",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html"
+        ],
+        "path": [
+          "resource",
+          "aws_security_group[elb]",
+          "description"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-73",
+        "title": "AWS Security Group allows open egress",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-73",
+        "isGeneratedByCustomRule": false,
+        "issue": "The inline security group rule allows open egress",
+        "impact": "Open egress can be used to exfiltrate data to unauthorized destinations, and enable access to potentially malicious resources",
+        "remediation": {
+          "cloudformation": "Set `Properties.SecurityGroupEgress.CidrIp` attribute to specific ranges e.g. `192.168.1.0/24`",
+          "terraform": "Set `egress.cidr_blocks` attribute to specific ranges e.g. `192.168.1.0/24`"
+        },
+        "lineNumber": 12,
+        "iacDescription": {
+          "issue": "The inline security group rule allows open egress",
+          "impact": "Open egress can be used to exfiltrate data to unauthorized destinations, and enable access to potentially malicious resources"
+        },
+        "publicId": "SNYK-CC-TF-73",
+        "msg": "resource.aws_security_group[elb].egress",
+        "references": [
+          "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html",
+          "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html"
+        ],
+        "path": [
+          "resource",
+          "aws_security_group[elb]",
+          "egress"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-1",
+        "title": "Security Group allows open ingress",
+        "severity": "medium",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-1",
+        "isGeneratedByCustomRule": false,
+        "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+        "impact": "That potentially everyone can access your resource",
+        "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+        "remediation": {
+          "cloudformation": "Set `Properties.SecurityGroupIngress.CidrIp` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+          "terraform": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "lineNumber": 5,
+        "iacDescription": {
+          "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+          "impact": "That potentially everyone can access your resource",
+          "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "publicId": "SNYK-CC-TF-1",
+        "msg": "input.resource.aws_security_group[elb].ingress",
+        "references": [
+          "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"
+        ],
+        "path": [
+          "input",
+          "resource",
+          "aws_security_group[elb]",
+          "ingress"
+        ],
+        "compliance": []
+      }
+    ]
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/aws/main.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/aws/main.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": false,
+    "infrastructureAsCodeIssues": [
+      {
+        "id": "SNYK-CC-TF-130",
+        "title": "EC2 instance accepts IMDSv1",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "EC2",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-130",
+        "isGeneratedByCustomRule": false,
+        "issue": "Instance Metadata Service v2 is not enforced",
+        "impact": "Metadata service may be vulnerable to reverse proxy/open firewall misconfigurations and server side request forgery attacks",
+        "resolve": "Set `metadata_options.http_tokens` attribute to `required`",
+        "lineNumber": 16,
+        "iacDescription": {
+          "issue": "Instance Metadata Service v2 is not enforced",
+          "impact": "Metadata service may be vulnerable to reverse proxy/open firewall misconfigurations and server side request forgery attacks",
+          "resolve": "Set `metadata_options.http_tokens` attribute to `required`"
+        },
+        "publicId": "SNYK-CC-TF-130",
+        "msg": "resource.aws_instance[dummy-server].metadata_options",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html",
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html",
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html",
+          "https://aws.amazon.com/blogs/security/defense-in-depth-open-firewalls-reverse-proxies-ssrf-vulnerabilities-ec2-instance-metadata-service/"
+        ],
+        "path": [
+          "resource",
+          "aws_instance[dummy-server]",
+          "metadata_options"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-AWS-426",
+        "title": "EC2 API termination protection is not enabled",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "EC2",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-AWS-426",
+        "isGeneratedByCustomRule": false,
+        "issue": "To prevent instance from being accidentally terminated using Amazon EC2, you can enable termination protection for the instance",
+        "impact": "Without this setting enabled the instances can be terminated by accident. This setting should only be used for instances with high availability requirements. Enabling this may prevent IaC workflows from updating the instance, for example terraform will not be able to terminate the instance to update instance type",
+        "resolve": "Set `disable_api_termination` attribute  with value `true`",
+        "remediation": {
+          "cloudformation": "Set `DisableApiTermination` attribute with value `true`",
+          "terraform": "Set `disable_api_termination` attribute  with value `true`"
+        },
+        "lineNumber": 16,
+        "iacDescription": {
+          "issue": "To prevent instance from being accidentally terminated using Amazon EC2, you can enable termination protection for the instance",
+          "impact": "Without this setting enabled the instances can be terminated by accident. This setting should only be used for instances with high availability requirements. Enabling this may prevent IaC workflows from updating the instance, for example terraform will not be able to terminate the instance to update instance type",
+          "resolve": "Set `disable_api_termination` attribute  with value `true`"
+        },
+        "publicId": "SNYK-CC-AWS-426",
+        "msg": "resource.aws_instance[dummy-server].disable_api_termination",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination"
+        ],
+        "path": [
+          "resource",
+          "aws_instance[dummy-server]",
+          "disable_api_termination"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-56",
+        "title": "Security group description is missing",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-56",
+        "isGeneratedByCustomRule": false,
+        "issue": "The description field is missing in the security group",
+        "impact": "Increases the security management overhead",
+        "resolve": "Set `description` attribute to meaningful statement",
+        "lineNumber": 29,
+        "iacDescription": {
+          "issue": "The description field is missing in the security group",
+          "impact": "Increases the security management overhead",
+          "resolve": "Set `description` attribute to meaningful statement"
+        },
+        "publicId": "SNYK-CC-TF-56",
+        "msg": "resource.aws_security_group[dummy_server].description",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html"
+        ],
+        "path": [
+          "resource",
+          "aws_security_group[dummy_server]",
+          "description"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-53",
+        "title": "Non-Encrypted root block device",
+        "severity": "medium",
+        "isIgnored": false,
+        "subType": "EC2",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-53",
+        "isGeneratedByCustomRule": false,
+        "issue": "The root block device for ec2 instance is not encrypted",
+        "impact": "That should someone gain unauthorized access to the data they would be able to read the contents.",
+        "resolve": "Set `root_block_device.encrypted` attribute to `true`",
+        "remediation": {
+          "cloudformation": "Set `BlockDeviceMappings.Encrypted` attribute of root device to `true`",
+          "terraform": "Set `root_block_device.encrypted` attribute to `true`"
+        },
+        "lineNumber": 16,
+        "iacDescription": {
+          "issue": "The root block device for ec2 instance is not encrypted",
+          "impact": "That should someone gain unauthorized access to the data they would be able to read the contents.",
+          "resolve": "Set `root_block_device.encrypted` attribute to `true`"
+        },
+        "publicId": "SNYK-CC-TF-53",
+        "msg": "resource.aws_instance[dummy-server].root_block_device.encrypted",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html",
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html",
+          "https://aws.amazon.com/premiumsupport/knowledge-center/cloudformation-root-volume-property/",
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html"
+        ],
+        "path": [
+          "resource",
+          "aws_instance[dummy-server]",
+          "root_block_device",
+          "encrypted"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-74",
+        "title": "Credentials are configured via provider attributes",
+        "severity": "high",
+        "isIgnored": false,
+        "subType": "Provider",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-74",
+        "isGeneratedByCustomRule": false,
+        "issue": "Credentials are configured via provider attributes",
+        "impact": "Use of provider attributes can lead to accidental disclosure of credentials in configuration files, variable definition files, event logs or console logs",
+        "resolve": "Set access credentials via environment variables, and remove `access_key` and `secret_key` attributes from the configuration",
+        "lineNumber": -1,
+        "iacDescription": {
+          "issue": "Credentials are configured via provider attributes",
+          "impact": "Use of provider attributes can lead to accidental disclosure of credentials in configuration files, variable definition files, event logs or console logs",
+          "resolve": "Set access credentials via environment variables, and remove `access_key` and `secret_key` attributes from the configuration"
+        },
+        "publicId": "SNYK-CC-TF-74",
+        "msg": "provider[aws]",
+        "references": [
+          "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html",
+          "https://registry.terraform.io/providers/hashicorp/aws/latest/docs"
+        ],
+        "path": [
+          "provider[aws]"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-1",
+        "title": "Security Group allows open ingress",
+        "severity": "medium",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-1",
+        "isGeneratedByCustomRule": false,
+        "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+        "impact": "That potentially everyone can access your resource",
+        "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+        "remediation": {
+          "cloudformation": "Set `Properties.SecurityGroupIngress.CidrIp` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+          "terraform": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "lineNumber": 29,
+        "iacDescription": {
+          "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+          "impact": "That potentially everyone can access your resource",
+          "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "publicId": "SNYK-CC-TF-1",
+        "msg": "input.resource.aws_security_group[dummy_server].ingress[0]",
+        "references": [
+          "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"
+        ],
+        "path": [
+          "input",
+          "resource",
+          "aws_security_group[dummy_server]",
+          "ingress[0]"
+        ],
+        "compliance": []
+      },
+      {
+        "id": "SNYK-CC-TF-1",
+        "title": "Security Group allows open ingress",
+        "severity": "medium",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-TF-1",
+        "isGeneratedByCustomRule": false,
+        "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+        "impact": "That potentially everyone can access your resource",
+        "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+        "remediation": {
+          "cloudformation": "Set `Properties.SecurityGroupIngress.CidrIp` attribute with a more restrictive IP, for example `192.16.0.0/24`",
+          "terraform": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "lineNumber": 29,
+        "iacDescription": {
+          "issue": "That inbound traffic is allowed to a resource from any source instead of a restricted range",
+          "impact": "That potentially everyone can access your resource",
+          "resolve": "Set `cidr_block` attribute with a more restrictive IP, for example `192.16.0.0/24`"
+        },
+        "publicId": "SNYK-CC-TF-1",
+        "msg": "input.resource.aws_security_group[dummy_server].ingress[1]",
+        "references": [
+          "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"
+        ],
+        "path": [
+          "input",
+          "resource",
+          "aws_security_group[dummy_server]",
+          "ingress[1]"
+        ],
+        "compliance": []
+      }
+    ]
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/aws/outputs.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/aws/outputs.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/aws/variables.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/aws/variables.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/aws/vpc.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/aws/vpc.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": false,
+    "infrastructureAsCodeIssues": [
+      {
+        "id": "SNYK-CC-AWS-427",
+        "title": "Public IPs are automatically mapped to instances",
+        "severity": "low",
+        "isIgnored": false,
+        "subType": "VPC",
+        "documentation": "https://snyk.io/security-rules/SNYK-CC-AWS-427",
+        "isGeneratedByCustomRule": false,
+        "issue": "Instances launched in this subnet will automatically have public IP assigned",
+        "impact": "Instances will be potentially accessible over public internet, which may lead to unauthorized access",
+        "resolve": "Set `map_public_ip_on_launch` attribute  with value `true`",
+        "remediation": {
+          "cloudformation": "Set `Properties.MapPublicIpOnLaunch` attribute with value `true`",
+          "terraform": "Set `map_public_ip_on_launch` attribute  with value `true`"
+        },
+        "lineNumber": 18,
+        "iacDescription": {
+          "issue": "Instances launched in this subnet will automatically have public IP assigned",
+          "impact": "Instances will be potentially accessible over public internet, which may lead to unauthorized access",
+          "resolve": "Set `map_public_ip_on_launch` attribute  with value `true`"
+        },
+        "publicId": "SNYK-CC-AWS-427",
+        "msg": "resource.aws_subnet[default].map_public_ip_on_launch",
+        "references": [
+          "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html"
+        ],
+        "path": [
+          "resource",
+          "aws_subnet[default]",
+          "map_public_ip_on_launch"
+        ],
+        "compliance": []
+      }
+    ]
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/docker/main.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/docker/main.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/docker/variables.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/docker/variables.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/hcloud/main.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/hcloud/main.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/hcloud/outputs.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/hcloud/outputs.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/hcloud/triggers.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/hcloud/triggers.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/hcloud/variables.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/hcloud/variables.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/kvm/main.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/kvm/main.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  },
+  {
+    "meta": {
+      "isPrivate": true,
+      "isLicensesEnabled": false,
+      "ignoreSettings": {
+        "adminOnly": false,
+        "reasonRequired": false,
+        "disregardFilesystemIgnores": false
+      },
+      "org": "hemadri.bheemavaram",
+      "orgPublicId": "d5eb2768-1381-4a84-a7e2-e83bb9800c8c",
+      "policy": ""
+    },
+    "filesystemPolicy": false,
+    "vulnerabilities": [],
+    "dependencyCount": 0,
+    "licensesPolicy": null,
+    "ignoreSettings": null,
+    "targetFile": "terraform/kvm/variables.tf",
+    "projectName": "infrastructure-as-code-master",
+    "org": "hemadri.bheemavaram",
+    "policy": "",
+    "isPrivate": true,
+    "targetFilePath": "/Users/hemadrib/Downloads/infrastructure-as-code-master/terraform/kvm/variables.tf",
+    "packageManager": "terraformconfig",
+    "path": "/Users/hemadrib/Downloads/infrastructure-as-code-master",
+    "projectType": "terraformconfig",
+    "ok": true,
+    "infrastructureAsCodeIssues": []
+  }
+]

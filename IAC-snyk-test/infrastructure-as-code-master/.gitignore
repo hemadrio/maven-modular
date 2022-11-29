@@ -1,0 +1,19 @@
+.env
+vars.json
+*.swp
+*.swo
+*.box
+*.retry
+
+dummy-server/dummy-server
+
+# Packer
+packer_cache
+manifest.json
+*-manifest.json
+output-*
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
